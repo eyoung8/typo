@@ -63,4 +63,21 @@ describe Admin::CategoriesController do
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end
   
+    # @categories = Category.find(:all)
+    # @category = Category.find(params[:id])
+    # @category.attributes = params[:category]
+  
+  describe "#new" do
+    it "should render the new template with an id" do
+      get :new, :id => Factory(:category).id
+      expect(response).to render_template(:new)
+    end
+    
+    
+    it "should render the new template without an id" do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
+  
 end
